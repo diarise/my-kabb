@@ -3,6 +3,7 @@
     <head>
         <title>{{ page.title }}</title>
         <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/main.css" rel="stylesheet">
     </head>
     <body>
         <div>
@@ -12,10 +13,10 @@
             <div class="row">
                 {{ content }}
             </div>
-            <div class="row">
-                {% include footer.html %}
-            </div>            
         </div>
+        <footer class="footer">
+            {% include footer.html %}
+        </footer>
 
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
