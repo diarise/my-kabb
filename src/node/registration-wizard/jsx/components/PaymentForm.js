@@ -14,24 +14,30 @@ export default class extends React.Component {
     }
 
     handleChange(event) {
-        this.props.store.setProfileField(event.target.name, event.target.value);
+        this.props.store.setPaymentField(event.target.name, event.target.value);
     }
 
     handleBlur(event) {
-        this.props.store.profile[event.target.name].validate();
+        this.props.store.payment[event.target.name].validate();
     }
 
     handleSubmit(event) {
-        let { profile } = this.props.store;
-        let valid = this.props.store.validateProfile();
+        // TODO Need to disable the submit button so that the user doesn't
+        //  accidentally submit more than once. Also need to display some
+        //  loader graphic instead.
+        let { payment } = this.props.store;
+        // TODO Need to actually validate payment fields similar to how it is implemented
+        //  in the profile form handleSubmit.
+        let valid = true;
         event.preventDefault();
         if (valid) {
-            hashHistory.push('payment');
+            this.props.store.submitRegistration();
+            hashHistory.push('result');
         }
     }
 
     renderInputField(name) {
-        let field = this.props.store.profile[name];
+        let field = this.props.store.payment[name];
 
         return (
             <div class={'form-group ' + (field.errors.length > 0 && 'has-error')}>
@@ -56,22 +62,21 @@ export default class extends React.Component {
     }
 
     render() {
-        /* TODO I started you off with firstname and lastname, but now
-            we need to add the rest of the profile fields. These are all 
-            the fields on the IDP regiration form except credit card
-            information. Notice that the Field class in store.js only does
+        /* TODO I started you off with card holder name and credit card num, but now
+            we need to add the rest of the payment fields. Notice that the Field 
+            class in store.js only does
             basic validation. This class should be tweaked to accomodate
-            more complex validation, such as email address (regex based)
-            validation, etc. */
+            more complex (regex based) validation, such as numeric-only,
+            exparation date, etc. */
         return (
             <form class="form-horizontal" onSubmit={this.handleSubmit}>
-                {this.renderInputField('firstName')}
-                {this.renderInputField('lastName')}
+                {this.renderInputField('cardHolderName')}
+                {this.renderInputField('creditCardNumber')}
                 <div class="form-group">
                     <div class="col-md-12">                                
                         <input 
                             type="submit" 
-                            value="Create Account" 
+                            value="Submit Payment" 
                             class="btn btn-primary btn-block" />
                     </div>
                 </div>
