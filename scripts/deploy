@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# TODO mabye this is not done at this level
+# Transpile JS
+#webpack
+
+# TODO mabye this is not done at this level
+# Show output file
+#ls -lh src/js/client.min.js
+
+# Empty AWS staging bucket
+aws s3 rm s3://my.kabbalah.com --recursive
+
+# Copy relevant files to staging bucket
+aws s3 sync build/ s3://my.kabbalah.com/ --exclude "Guardfile"
+#aws s3 cp src/index.html s3://testfrontend.kabbalah.com
+#aws s3 sync src/css s3://testfrontend.kabbalah.com/css
+#aws s3 sync src/fonts s3://testfrontend.kabbalah.com/fonts
+#aws s3 sync src/images s3://testfrontend.kabbalah.com/images
+#aws s3 sync src/js s3://testfrontend.kabbalah.com/js
+
+# Display content of bucket
+aws s3 ls s3://my.kabbalah.com
