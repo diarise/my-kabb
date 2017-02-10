@@ -22,6 +22,15 @@ $mainFontFace: 'Montserrat', sans-serif;
 body{
 	font-family: $mainFontFace;
 }
+.navbar.navbar-inverse {
+	margin-bottom: 0;
+}
+.subscriptionWrapper{
+    background-color: #f6f7fb;
+    margin-bottom: 90px;
+    padding-bottom: 90px;
+    border-bottom: 1px solid #dddee2;
+}
 .monthlyPlan{
 	.thumbnail{
 		padding: 0;
@@ -191,130 +200,20 @@ body{
 	min-height: 401px;
 	float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.thumbnail img {
-    height: 130px;
-    object-fit: cover;
-    width: 100%;
-}
-.thumbnail {
-    padding: 0;
-}
-.planLabel {
-    margin: auto;
-    position: relative;
-    top: -40px;
-    width: 100%;
-}
-.btn.btn-default.btn-circle.btn-lg {
-    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
-    border: medium none;
-    border-radius: 0;
-    color: #fff;
-    height: 40px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-}
-.topPlan {
-    height: 100px;
-    overflow: hidden;
-    position: absolute;
-    right: 15px;
+.subscriptionWrapperFooter{
+	h3{
     text-align: center;
-    top: 0;
-    width: 110px;
-    z-index: 0;
+    font-size: 32px;
+    font-weight: 100;
+    margin-bottom: 50px;
+	}
+	p{
+	    font-size: 14px;
+	    line-height: 20px;
+	    font-weight: 200;
+	    padding-bottom: 40px;
+	}
 }
-.topPlanLabel {
-    background: #ffd400 none repeat scroll 0 0;
-    box-shadow: 3px -4px 13px 3px rgba(0, 0, 0, 0.75);
-    color: #444;
-    display: block;
-    font-size: 12px;
-    font-weight: bold;
-    left: -47px;
-    padding: 58px 35px 6px 40px;
-    position: absolute;
-    text-align: center;
-    text-transform: uppercase;
-    top: -42px;
-    transform: rotate(40deg);
-    transition: all 0.5s ease 0s;
-    width: 300px;
-}
-.btn.btn-default.btn-circle.btn-lg h5 span {
-    font-size: 24px;
-    font-weight: 200;
-}
-.btn.btn-default.btn-circle.btn-lg h5 {
-    display: inline;
-    float: right;
-    margin-top: -4px;
-    padding-right: 10px;
-}
-.btn.btn-default.btn-circle.btn-lg > span{
-    float: left;
-    padding-left: 10px;
-}
-.caption > ul {
-    padding-left: 0px;
-}
-.caption li {
-    list-style: outside none none;
-    border-top: 1px solid #ccc;
-    font-size: 12px;
-    padding: 10px 0;
-}
-.caption li:first-child {
-    border: medium none;
-}
-.caption li .glyphicon.glyphicon-ok {
-    margin-right: 6px;
-}
-.buttonWrapperPlan {
-    margin: auto auto 20px;
-    text-align: center;
-    width: 75%;
-}
-.buttonWrapperPlan a {
-    border-radius: 2px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    padding-left: 0;
-    padding-right: 0;
-    text-transform: capitalize;
-    width: 100%;
-}
-.buttonWrapperPlan > h5 {
-    margin-top: 20px;
-}
-.buttonWrapperPlan span{
-	margin-top: 10px;
-}*/
 .subscriptionHeader h3{
     font-size: 2.47em;
     font-weight: 300;
