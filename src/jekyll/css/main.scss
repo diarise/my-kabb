@@ -28,9 +28,9 @@ body{
 }
 .subscriptionWrapper{
     background-color: #f6f7fb;
-    margin-bottom: 90px;
     padding-bottom: 90px;
     border-bottom: 1px solid #dddee2;
+    position: relative;
 }
 .monthlyPlan{
 	.thumbnail{
@@ -218,10 +218,16 @@ body{
 .subscriptionHeaderTop {
 	background: #000;
     color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
     img{
     	float: right;
     	width: 60%;
     }
+}
+.subscriptionHeaderTop + div{
+	margin-top: 300px;
 }
 .subscriptionHeader h3{
     font-size: 2.47em;
@@ -241,8 +247,17 @@ body{
     width: 100%;
     height: 80px;
 }
-
-
+.subscriptionHeaderTop p{	
+    font-size: 21px;
+    font-weight: 100;
+    padding-top: 50px;
+}
+.subscriptionWrapperFooter{
+	background: #fff;
+    width: 100%;
+    position: relative;
+    padding-top: 90px;
+}
 /*steve style for store*/
 
 
@@ -369,3 +384,4 @@ body{
 .l-s-100 {
     letter-spacing: .12em;
 }
+/*end steven css*/
