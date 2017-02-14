@@ -15,9 +15,9 @@
 // Variables
 
 $freeColor: #444549;
-$basicColor: #408194;
-$premiumColor: #c72384;
-$premiumPlusColor: #424380;
+$basicColor: #348ff0;
+$premiumColor: #0c539d;
+$premiumPlusColor: #c7332f;
 $mainFontFace: 'Montserrat', sans-serif;
 //small custom css
 body{
@@ -85,7 +85,7 @@ body{
 		}
 		.monthlyPlanLabel.customColorLabel{
 			padding: 20px 0 0;
-		    color: $basicColor;
+		    color: $premiumColor;
 		    div{
 		    	hr{
 					background-color: #dddee2;
@@ -163,7 +163,10 @@ body{
 	    text-align: center;
 	    padding: 5px 0;
 	    font-weight: 400;
-	    color: $premiumColor;
+	    color: #fff;
+	    background-color: #F1A40B;
+	    -webkit-border-radius: 5px 5px 0 0;
+			border-radius: 5px 5px 0 0;
 	}
 	.planHeader{
 		background-color: $premiumColor;
