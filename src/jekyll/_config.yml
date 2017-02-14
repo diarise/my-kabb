@@ -31,3 +31,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
 destination:  ../../build
+
+# Cloud front path for absolute linking to CSS and JS
+static_cdn: http://d3q733kx0uywqy.cloudfront.net
