@@ -261,6 +261,15 @@ body{
     position: relative;
     padding-top: 90px;
 }
+.headerWrapper nav{
+    background: #f6f7fb;
+    border: none;
+    padding: 20px 0;
+}
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-nav>li>a:hover{
+    color:#444549;
+}
 /*steve style for store*/
 
 
