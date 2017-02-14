@@ -26,12 +26,13 @@ export default class extends React.Component {
         //  accidentally submit more than once. Also need to display some
         //  loader graphic instead.
         let { payment } = this.props.store;
+				let { profile } = this.props.store;
         // TODO Need to actually validate payment fields similar to how it is implemented
         //  in the profile form handleSubmit.
         let valid = true;
         event.preventDefault();
         if (valid) {
-            this.props.store.submitRegistration();
+            this.props.store.submitRegistration(payment);
             hashHistory.push('result');
         }
     }

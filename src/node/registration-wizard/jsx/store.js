@@ -29,7 +29,23 @@ class Store {
     profile = {
         firstName: new Field('firstName', 'First Name'),
         lastName: new Field('lastName', 'Last Name'),
+				userName: new Field('userName', 'User Name'),
+				email: new Field('email', 'Email'),
+				confirmEmail: new Field('confirmEmail', 'Confirm Email'),
+				pass: new Field('pass', 'Password'),
+				confirmPass: new Field('confirmPass', 'Confirm Password'),
+				month: new Field('month', 'Month'),
+				day: new Field('day', 'Day'),
+				year: new Field('year', 'Year'),
+				gender: new Field('gender', 'Gender'),
+				teacher: new Field('teacher', 'Teacher'),
+				country: new Field('country', 'Country'),
+				state: new Field('state', 'State'),
+				city: new Field('city', 'City'),
+				language: new Field('language', 'Language'),
+				billingPhone: new Field('billingPhone', 'Phone Number'),
     }
+		
 
     payment = {
         cardHolderName: new Field('cardHolderName', 'Card Holder Name'),
@@ -47,7 +63,7 @@ class Store {
     setProfileField(key, value) {
         this.profile[key].value = value;
     }
-
+		
     @action
     setPaymentField(key, value) {
         this.payment[key].value = value;
@@ -67,19 +83,20 @@ class Store {
 
     // TODO Create a validatePayment function similar to validateProfile.
 
-    submitRegistration() {
+    submitRegistration(payLoad) {
+		
         // TODO construct actual payload with appropriate data
-        let payLoad = 'This object should actually include profile and payment data';
+        //let payLoad = 'This object should actually include profile and payment data';
         // TODO Need to actually process the web service call response, 
         //  and store errors/success so that observer components can
         //  react accordingly.      
-        //services.submitRegistration(payLoad).then(data => {
+        services.submitRegistration(payLoad).then(data => {
             // TODO Do something meaningful with the returned data such
             //  as storing it in an observable object
-        //}).catch(error => {
+       }).catch(error => {
             // TODO Do something meaningful with the returned error such
             //  as storing it in an observable error object            
-        //});
+        });
     }
 }
 
