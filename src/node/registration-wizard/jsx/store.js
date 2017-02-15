@@ -19,13 +19,26 @@ class Field {
         }
         if (!this.value.length && this.required) {
             this.errors.push('This field is required');
-        }        
+        }
+				let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/	
+				switch (this.name) {
+					case 'email':
+						if(!this.value.match(emailFormat) && this.value.length && this.required) { 
+							this.errors.push('Enter valid email address');
+						}
+					break;
+					case 'confirmEmail':
+						if(!this.value.match(emailFormat) && this.value.length && this.required) { 
+							this.errors.push('Enter valid email address');
+						}
+					break;
+				}
     }
 }
 
 class Store {
     @observable subscriptionType = 'free';
-
+		@observable teachers = [{ value: '', label: 'Please Choose Teacher' }]
     profile = {
         firstName: new Field('firstName', 'First Name'),
         lastName: new Field('lastName', 'Last Name'),
@@ -45,11 +58,15 @@ class Store {
 				language: new Field('language', 'Language'),
 				billingPhone: new Field('billingPhone', 'Phone Number'),
     }
-		
-
+			
     payment = {
+        cardType: new Field('cardType', 'Credit Card Type'),
         cardHolderName: new Field('cardHolderName', 'Card Holder Name'),
         creditCardNumber: new Field('creditCardNumber', 'Credit Card Number'),
+        cardExpiryMonth: new Field('cardExpiryMonth', 'Credit Card Expiry Month'),
+        cardExpiryYear: new Field('cardExpiryYear', 'Credit Card Expiry Year'),
+        cardCvv: new Field('cardCvv', 'Credit Card CVV Number'),
+        coupon: new Field('coupon', 'Coupon Code'),
     }
 
     @action
@@ -98,6 +115,18 @@ class Store {
             //  as storing it in an observable error object            
         });
     }
+		
+		getTeachers() {
+        services.getTeachers().then(data => {
+				this.teachers = data;
+       }).catch(error => {
+			 
+        });
+    }
+		
+	
+		
+		
 }
 
 const store = new Store;

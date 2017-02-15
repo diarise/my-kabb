@@ -26,7 +26,27 @@ function submitRegistration(payLoad) {
         'Need to actually return a promise...'
     );
 }
-
+function getTeachers() {
+    let url = env.GET_TEACHERS_URL;
+    /* TODO use axios to return a promise. Here is an example of axios.get.
+        axios.post is very similar (you just need to provide the payload).
+        Please use arrow functions for neatness.
+		*/
+                return (
+                    axios.get(url)
+                        .then(response => {
+                            return response.data;
+                        })
+                        .catch(error => {
+                            //throw 'Ajax module: '+error // E.g. could be: Network Error
+                        })
+                )  
+     
+    return (
+        'Need to actually return a promise...'
+    );
+}
 export default {
     submitRegistration,
+		getTeachers,
 }

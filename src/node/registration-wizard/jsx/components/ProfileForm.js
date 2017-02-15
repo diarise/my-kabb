@@ -12,7 +12,10 @@ export default class extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleBlur = this.handleBlur.bind(this);
     }
-
+		
+		componentWillMount() {
+				this.props.store.getTeachers();
+		}
     handleChange(event) {
         this.props.store.setProfileField(event.target.name, event.target.value);
     }
@@ -85,7 +88,7 @@ export default class extends React.Component {
         );
 
     }
-		renderSelectInputField(name, options) {
+		renderSelectOptionField(name, options) {
         let field = this.props.store.profile[name];
 				var optionList = []
 				if (options.length != 0) {
@@ -124,7 +127,9 @@ export default class extends React.Component {
             basic validation. This class should be tweaked to accomodate
             more complex validation, such as email address (regex based)
             validation, etc. */
-						
+				
+				let { teachers } = this.props.store;
+							
 				let months = [{ value: '', label: 'Please Choose DOB Month' },{ value: '01', label: 'JAN' },{ value: '02', label: 'FEB' },{ value: '03', label: 'MAR' },{ value: '04', label: 'APR' },{ value: '05', label: 'MAY' },{ value: '06', label: 'JUN' },{ value: '07', label: 'JUL' },{ value: '08', label: 'AUG' },{ value: '09', label: 'SEP' },{ value: '10', label: 'OCT' },{ value: '11', label: 'NOV' },{ value: '12', label: 'DEC' }];		
 				let days = [{ value: '', label: 'Please Choose DOB Day' },{ value: '01', label: '01' },{ value: '02', label: '02' },{ value: '03', label: '03' },{ value: '04', label: '04' },{ value: '05', label: '05' },{ value: '06', label: '06' },{ value: '07', label: '07' },{ value: '08', label: '08' },{ value: '09', label: '09' },{ value: '10', label: '10' },{ value: '11', label: '11' },{ value: '12', label: '12' },{ value: '13', label: '13' },{ value: '14', label: '14' },{ value: '15', label: '15' },{ value: '16', label: '16' },{ value: '17', label: '17' },{ value: '18', label: '18' },{ value: '19', label: '19' },{ value: '20', label: '20' },{ value: '21', label: '21' },{ value: '22', label: '22' },{ value: '23', label: '23' },{ value: '24', label: '24' },{ value: '25', label: '25' },{ value: '26', label: '26' },{ value: '27', label: '27' },{ value: '28', label: '28' },{ value: '29', label: '29' },{ value: '30', label: '30' },{ value: '31', label: '31' }];	
 				var myDate = new Date();
@@ -134,7 +139,7 @@ export default class extends React.Component {
 						years.push({ value: i, label: i })
 					}
 				let gender = [{ value: '', label: 'Please Choose Gender' },{ value: 'male', label: 'Male' },{ value: 'female', label: 'Female' }];
-				let teacher = [{ value: '', label: 'Please Choose Teacher' },{ value: 'None', label: 'None' },{ value: 'Abe Hardoon', label: 'Abe Hardoon' },{ value: 'Adriana D`armas', label: 'Adriana D`armas' },{ value: 'Agnieszka Tomaszewska', label: 'Agnieszka Tomaszewska' },{ value: 'Aharon Hacohen', label: 'Aharon Hacohen'}];
+				
 				let language = [{ value: '', label: 'Please Choose Language' },{ value: 'english', label: 'English' },{ value: 'spanish', label: 'Spanish' },{ value: 'russian', label: 'Russian' }];
 				let country = [	{
 													label: "Please Choose Country",
@@ -897,15 +902,15 @@ export default class extends React.Component {
 								{this.renderInputField('confirmEmail')}
 								{this.renderPasswordInputField('pass')}
 								{this.renderPasswordInputField('confirmPass')}
-								{this.renderSelectInputField('month',months)}
-								{this.renderSelectInputField('day',days)}
-								{this.renderSelectInputField('year',years)}
-								{this.renderSelectInputField('gender',gender)}
-								{this.renderSelectInputField('teacher',teacher)}
-								{this.renderSelectInputField('country',country)}
+								{this.renderSelectOptionField('month',months)}
+								{this.renderSelectOptionField('day',days)}
+								{this.renderSelectOptionField('year',years)}
+								{this.renderSelectOptionField('gender',gender)}
+								{this.renderSelectOptionField('teacher',teachers)}
+								{this.renderSelectOptionField('country',country)}
 								{this.renderInputField('state')}
 								{this.renderInputField('city')}
-								{this.renderSelectInputField('language',language)}
+								{this.renderSelectOptionField('language',language)}
 								{this.renderInputField('billingPhone')}
                 <div class="form-group">
                     <div class="col-md-12">                                
