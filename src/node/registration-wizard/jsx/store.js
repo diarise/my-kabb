@@ -23,14 +23,29 @@ class Field {
 				let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/	
 				switch (this.name) {
 					case 'email':
-						if(!this.value.match(emailFormat) && this.value.length && this.required) { 
-							this.errors.push('Enter valid email address');
+						if (!this.value.match(emailFormat) && this.value.length && this.required) { 
+								this.errors.push('Please enter a valid email address');
 						}
 					break;
 					case 'confirmEmail':
-						if(!this.value.match(emailFormat) && this.value.length && this.required) { 
-							this.errors.push('Enter valid email address');
+						if (!this.value.match(emailFormat) && this.value.length && this.required) { 
+								this.errors.push('Please enter a valid email address');
 						}
+					break;
+					case 'cardCvv':
+						var cvv = 	/^[0-9]{1,4}$/
+						if ((!this.value.match(cvv)) && this.value.length && this.required) { 
+								this.errors.push('Please enter a valid security code');
+						}
+					break;
+					case 'creditCardNumber':
+					 var cardNumber = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+						if ((!this.value.match(cardNumber)) && this.value.length && this.required) { 
+								this.errors.push('Please enter a valid card number');
+						}
+					break;
+					case 'coupon':
+						this.errors.replace([]);
 					break;
 				}
     }
@@ -39,6 +54,7 @@ class Field {
 class Store {
     @observable subscriptionType = 'free';
 		@observable teachers = [{ value: '', label: 'Please Choose Teacher' }]
+		@observable userResponse = null;
     profile = {
         firstName: new Field('firstName', 'First Name'),
         lastName: new Field('lastName', 'Last Name'),
@@ -66,7 +82,7 @@ class Store {
         cardExpiryMonth: new Field('cardExpiryMonth', 'Credit Card Expiry Month'),
         cardExpiryYear: new Field('cardExpiryYear', 'Credit Card Expiry Year'),
         cardCvv: new Field('cardCvv', 'Credit Card CVV Number'),
-        coupon: new Field('coupon', 'Coupon Code'),
+        coupon: new Field('coupon', 'Coupon Code (If Available)'),
     }
 
     @action
@@ -97,17 +113,26 @@ class Store {
         }
         return isValid;
     }
-
+		validatePayment() {
+        let isValid = true;
+        for (let [key, field] of Object.entries(this.payment)) {
+            field.validate();
+            if (field.errors.length) {
+                isValid = false;
+            }
+        }
+        return isValid;
+    }
     // TODO Create a validatePayment function similar to validateProfile.
 
-    submitRegistration(payLoad) {
-		
+    submitRegistration(profilePayLoad, paymentPayLoad) {
         // TODO construct actual payload with appropriate data
         //let payLoad = 'This object should actually include profile and payment data';
         // TODO Need to actually process the web service call response, 
         //  and store errors/success so that observer components can
         //  react accordingly.      
-        services.submitRegistration(payLoad).then(data => {
+        services.submitRegistration(profilePayLoad, paymentPayLoad).then(data => {
+					this.userResponse = data;
             // TODO Do something meaningful with the returned data such
             //  as storing it in an observable object
        }).catch(error => {

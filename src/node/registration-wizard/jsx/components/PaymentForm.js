@@ -25,15 +25,15 @@ export default class extends React.Component {
         // TODO Need to disable the submit button so that the user doesn't
         //  accidentally submit more than once. Also need to display some
         //  loader graphic instead.
-        let { payment } = this.props.store;
-				let { profile } = this.props.store;
+        let { payment, profile } = this.props.store;
         // TODO Need to actually validate payment fields similar to how it is implemented
         //  in the profile form handleSubmit.
-        let valid = true;
+				
+        let valid = this.props.store.validatePayment();
         event.preventDefault();
         if (valid) {
-            this.props.store.submitRegistration(payment);
-            hashHistory.push('result');
+            this.props.store.submitRegistration(profile, payment);
+            //hashHistory.push('result');
         }
     }
 
@@ -100,6 +100,14 @@ export default class extends React.Component {
             basic validation. This class should be tweaked to accomodate
             more complex (regex based) validation, such as numeric-only,
             exparation date, etc. */
+				let { userResponse } = this.props.store;
+				if(userResponse != null) {
+					if (userResponse.status == 'ok') {
+						hashHistory.push('result');
+					} else {
+							alert(userResponse.error_description);
+						}
+				}
 				let cardType = [{ value: '', label: 'Please Choose Card Type' },{ value: 'Visa', label: 'Visa' },{ value: 'Master Card', label: 'Master Card' },{ value: 'American Express', label: 'American Express' }];
 				let months = [{ value: '', label: 'Please Choose Expiry Month' },{ value: '01', label: '01' },{ value: '02', label: '02' },{ value: '03', label: '03' },{ value: '04', label: '04' },{ value: '05', label: '05' },{ value: '06', label: '06' },{ value: '07', label: '07' },{ value: '08', label: '08' },{ value: '09', label: '09' },{ value: '10', label: '10' },{ value: '11', label: '11' },{ value: '12', label: '12' }];	
 				var date = new Date()
@@ -109,6 +117,7 @@ export default class extends React.Component {
 					var allYear = startYear + i
 					years.push({ value: allYear, label: allYear })
 				}
+				
         return (
             <form class="form-horizontal" onSubmit={this.handleSubmit}>
                 {this.renderSelectOptionField('cardType', cardType)}
