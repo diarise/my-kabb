@@ -21,7 +21,7 @@ export default class extends React.Component {
                 <h1>Please Create Your Account</h1>
                 <p>
                     <strong>Subscription Type:</strong> {subscriptionType}
-                </p>                     
+                </p>
                 <ProfileForm />
             </div>
         );

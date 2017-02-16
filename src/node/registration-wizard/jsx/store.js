@@ -1,11 +1,11 @@
-import {action, observable } from 'mobx';
+import { action, observable } from 'mobx';
 
 import services from './services'
 
 class Field {
     @observable value = '';
     @observable errors = [];
-    constructor(name, label, required=true, minChars=0) {
+    constructor(name, label, required = true, minChars = 0) {
         this.name = name;
         this.label = label;
         this.required = required;
@@ -20,61 +20,61 @@ class Field {
         if (!this.value.length && this.required) {
             this.errors.push('This field is required');
         }
-				let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/	
-				switch (this.name) {
-					case 'email':
-						if (!this.value.match(emailFormat) && this.value.length && this.required) { 
-								this.errors.push('Please enter a valid email address');
-						}
-					break;
-					case 'confirmEmail':
-						if (!this.value.match(emailFormat) && this.value.length && this.required) { 
-								this.errors.push('Please enter a valid email address');
-						}
-					break;
-					case 'cardCvv':
-						var cvv = 	/^[0-9]{1,4}$/
-						if ((!this.value.match(cvv)) && this.value.length && this.required) { 
-								this.errors.push('Please enter a valid security code');
-						}
-					break;
-					case 'creditCardNumber':
-					 var cardNumber = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
-						if ((!this.value.match(cardNumber)) && this.value.length && this.required) { 
-								this.errors.push('Please enter a valid card number');
-						}
-					break;
-					case 'coupon':
-						this.errors.replace([]);
-					break;
-				}
+        let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        switch (this.name) {
+            case 'email':
+                if (!this.value.match(emailFormat) && this.value.length && this.required) {
+                    this.errors.push('Please enter a valid email address');
+                }
+                break;
+            case 'confirmEmail':
+                if (!this.value.match(emailFormat) && this.value.length && this.required) {
+                    this.errors.push('Please enter a valid email address');
+                }
+                break;
+            case 'cardCvv':
+                var cvv = /^[0-9]{1,4}$/
+                if ((!this.value.match(cvv)) && this.value.length && this.required) {
+                    this.errors.push('Please enter a valid security code');
+                }
+                break;
+            case 'creditCardNumber':
+                var cardNumber = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+                if ((!this.value.match(cardNumber)) && this.value.length && this.required) {
+                    this.errors.push('Please enter a valid card number');
+                }
+                break;
+            case 'coupon':
+                this.errors.replace([]);
+                break;
+        }
     }
 }
 
 class Store {
     @observable subscriptionType = 'free';
-		@observable teachers = [{ value: '', label: 'Please Choose Teacher' }]
-		@observable userResponse = null;
+    @observable teachers = [{ value: '', label: 'Please Choose Teacher' }]
+    @observable userResponse = null;
     profile = {
         firstName: new Field('firstName', 'First Name'),
         lastName: new Field('lastName', 'Last Name'),
-				userName: new Field('userName', 'User Name'),
-				email: new Field('email', 'Email'),
-				confirmEmail: new Field('confirmEmail', 'Confirm Email'),
-				pass: new Field('pass', 'Password'),
-				confirmPass: new Field('confirmPass', 'Confirm Password'),
-				month: new Field('month', 'Month'),
-				day: new Field('day', 'Day'),
-				year: new Field('year', 'Year'),
-				gender: new Field('gender', 'Gender'),
-				teacher: new Field('teacher', 'Teacher'),
-				country: new Field('country', 'Country'),
-				state: new Field('state', 'State'),
-				city: new Field('city', 'City'),
-				language: new Field('language', 'Language'),
-				billingPhone: new Field('billingPhone', 'Phone Number'),
+        userName: new Field('userName', 'User Name'),
+        email: new Field('email', 'Email'),
+        confirmEmail: new Field('confirmEmail', 'Confirm Email'),
+        pass: new Field('pass', 'Password'),
+        confirmPass: new Field('confirmPass', 'Confirm Password'),
+        month: new Field('month', 'Month'),
+        day: new Field('day', 'Day'),
+        year: new Field('year', 'Year'),
+        gender: new Field('gender', 'Gender'),
+        teacher: new Field('teacher', 'Teacher'),
+        country: new Field('country', 'Country'),
+        state: new Field('state', 'State'),
+        city: new Field('city', 'City'),
+        language: new Field('language', 'Language'),
+        billingPhone: new Field('billingPhone', 'Phone Number'),
     }
-			
+
     payment = {
         cardType: new Field('cardType', 'Credit Card Type'),
         cardHolderName: new Field('cardHolderName', 'Card Holder Name'),
@@ -96,7 +96,7 @@ class Store {
     setProfileField(key, value) {
         this.profile[key].value = value;
     }
-		
+
     @action
     setPaymentField(key, value) {
         this.payment[key].value = value;
@@ -113,7 +113,7 @@ class Store {
         }
         return isValid;
     }
-		validatePayment() {
+    validatePayment() {
         let isValid = true;
         for (let [key, field] of Object.entries(this.payment)) {
             field.validate();
@@ -132,26 +132,26 @@ class Store {
         //  and store errors/success so that observer components can
         //  react accordingly.      
         services.submitRegistration(profilePayLoad, paymentPayLoad).then(data => {
-					this.userResponse = data;
+            this.userResponse = data;
             // TODO Do something meaningful with the returned data such
             //  as storing it in an observable object
-       }).catch(error => {
+        }).catch(error => {
             // TODO Do something meaningful with the returned error such
             //  as storing it in an observable error object            
         });
     }
-		
-		getTeachers() {
+
+    getTeachers() {
         services.getTeachers().then(data => {
-				this.teachers = data;
-       }).catch(error => {
-			 
+            this.teachers = data;
+        }).catch(error => {
+
         });
     }
-		
-	
-		
-		
+
+
+
+
 }
 
 const store = new Store;

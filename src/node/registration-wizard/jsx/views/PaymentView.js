@@ -26,10 +26,10 @@ export default class extends React.Component {
                 <p>
                     <strong>Name:</strong>&nbsp;
                     {profile.firstName.value + ' ' + profile.lastName.value}
-                </p>                
+                </p>
                 <p>
                     <strong>Subscription Type:</strong> {subscriptionType}
-                </p>                
+                </p>
                 <p>
                     <strong>Total Monthly Cost:</strong> {cost}
                 </p>
