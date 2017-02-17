@@ -25,14 +25,13 @@ export default class extends React.Component {
         // TODO Need to disable the submit button so that the user doesn't
         //  accidentally submit more than once. Also need to display some
         //  loader graphic instead.
-        let { payment, profile } = this.props.store;
+        let userDetails = this.props.store;
         // TODO Need to actually validate payment fields similar to how it is implemented
         //  in the profile form handleSubmit.
-
         let valid = this.props.store.validatePayment();
         event.preventDefault();
         if (valid) {
-            this.props.store.submitRegistration(profile, payment);
+            this.props.store.submitRegistration(userDetails);
             //hashHistory.push('result');
         }
     }

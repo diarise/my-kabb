@@ -8,6 +8,7 @@ import { inject, observer } from 'mobx-react';
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {emailValue:null, confirmEmailValue:null};
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleBlur = this.handleBlur.bind(this);
@@ -25,13 +26,13 @@ export default class extends React.Component {
 	}
 
 	handleSubmit(event) {
-		let { profile } = this.props.store;
 		let { subscriptionType } = this.props.store;
+		let userDetails = this.props.store;
 		let valid = this.props.store.validateProfile();
 		event.preventDefault();
 		if (valid) {
 			if (subscriptionType == 'free') {
-				this.props.store.submitRegistration(profile, null);
+				this.props.store.submitRegistration(userDetails);
 				//hashHistory.push('result');
 			} else {
 				hashHistory.push('payment');

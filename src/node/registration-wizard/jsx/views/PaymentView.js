@@ -14,11 +14,7 @@ export default class extends React.Component {
         belongs in the constructor */
 
     render() {
-        let { subscriptionType } = this.props.store;
-        let { profile } = this.props.store;
-        // TODO Calculate the real cost
-        let cost = '$42.00';
-
+        let { profile, subscriptionType, subscriptionCost } = this.props.store;
         // TODO Make the subscriptionType and price labels prettier
         return (
             <div class="col-md-12">
@@ -31,7 +27,7 @@ export default class extends React.Component {
                     <strong>Subscription Type:</strong> {subscriptionType}
                 </p>
                 <p>
-                    <strong>Total Monthly Cost:</strong> {cost}
+                    <strong>Total Monthly Cost:</strong> {subscriptionCost}
                 </p>
                 <PaymentForm />
             </div>

@@ -2,15 +2,21 @@ import { action, observable } from 'mobx';
 
 import services from './services'
 
+var confirmValue = observable({
+    emailValue: null,
+    passwordValue: null,
+});
 class Field {
     @observable value = '';
     @observable errors = [];
+    @observable confirmEmailValue = '';
     constructor(name, label, required = true, minChars = 0) {
         this.name = name;
         this.label = label;
         this.required = required;
         this.minChars = minChars;
     }
+
 
     validate() {
         this.errors.replace([]);
@@ -23,6 +29,7 @@ class Field {
         let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         switch (this.name) {
             case 'email':
+                confirmValue.emailValue = this.value;
                 if (!this.value.match(emailFormat) && this.value.length && this.required) {
                     this.errors.push('Please enter a valid email address');
                 }
@@ -30,6 +37,17 @@ class Field {
             case 'confirmEmail':
                 if (!this.value.match(emailFormat) && this.value.length && this.required) {
                     this.errors.push('Please enter a valid email address');
+                }
+                if (confirmValue.emailValue != this.value && this.value.match(emailFormat) && this.value.length && this.required) {
+                    this.errors.push('Please enter the same value again');
+                }
+                break;
+            case 'pass':
+                confirmValue.passwordValue = this.value;
+                break;
+            case 'confirmPass':
+                if (confirmValue.passwordValue != this.value && this.value.length && this.required) {
+                    this.errors.push('Please enter the same value again');
                 }
                 break;
             case 'cardCvv':
@@ -49,10 +67,12 @@ class Field {
                 break;
         }
     }
+
 }
 
 class Store {
     @observable subscriptionType = 'free';
+    @observable subscriptionCost = null;
     @observable teachers = [{ value: '', label: 'Please Choose Teacher' }]
     @observable userResponse = null;
     profile = {
@@ -90,8 +110,20 @@ class Store {
         // TODO validate that the subscriptionName is not null and matches 
         //  an actual subscription (or fallback if null)
         this.subscriptionType = subscriptionName;
+        switch (this.subscriptionType) {
+            case 'basic':
+                this.subscriptionCost = '$9.00';
+            break;
+            case 'premium':
+                this.subscriptionCost = '$18.00';
+            break;
+            case 'premiumPlus':
+                this.subscriptionCost = '$42.00';
+            break;
+        }
+        
     }
-
+    
     @action
     setProfileField(key, value) {
         this.profile[key].value = value;
@@ -125,13 +157,13 @@ class Store {
     }
     // TODO Create a validatePayment function similar to validateProfile.
 
-    submitRegistration(profilePayLoad, paymentPayLoad) {
+    submitRegistration(payLoad) {
         // TODO construct actual payload with appropriate data
         //let payLoad = 'This object should actually include profile and payment data';
         // TODO Need to actually process the web service call response, 
         //  and store errors/success so that observer components can
         //  react accordingly.      
-        services.submitRegistration(profilePayLoad, paymentPayLoad).then(data => {
+        services.submitRegistration(payLoad).then(data => {
             this.userResponse = data;
             // TODO Do something meaningful with the returned data such
             //  as storing it in an observable object
