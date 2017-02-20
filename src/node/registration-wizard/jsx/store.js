@@ -188,12 +188,19 @@ class Store {
   }
 
   getTeachers() {
+    // Using static data for testing purpose only, will be replaced with an API call below.
+    this.teachers = [{"value":"","name":"Please Choose Teacher"},{"value":"None","name":"None"},{"value":"Abe Hardoon","name":"Abe Hardoon"},{"value":"Adriana D'armas","name":"Adriana D'armas"}]
+    /* Commenting the API call for testing purpose, checking with static data 
+       only during testing the functionality
+    
     services.getTeachers().then(data => {
       this.teachers = data;
     }).catch(error => {
       // catch error here
     });
+    */
   }
+  
 
 }
 
