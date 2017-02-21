@@ -13,7 +13,7 @@ function submitRegistration(payLoad) {
     subscriptionId = '2';
   } else if (payLoad.subscriptionType == 'premium') {
     subscriptionId = '3';
-  } else if (payLoad.subscriptionType == 'premiumPlus') {
+  } else if (payLoad.subscriptionType == 'premium plus') {
     subscriptionId = '4';
   } else {
     subscriptionId = '1';

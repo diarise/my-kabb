@@ -88,7 +88,7 @@ class Field {
 class Store {
   @observable subscriptionType = 'free';
   @observable subscriptionCost = null;
-  @observable teachers = [{ value: '', name: 'Please Choose Teacher' }]
+  @observable teachers = []
   @observable userResponse = null;
   profile = {
     firstName: new Field('firstName', 'First Name'),
@@ -134,6 +134,7 @@ class Store {
         break;
       case 'premiumPlus':
         this.subscriptionCost = '$42.00';
+        this.subscriptionType = 'premium plus';        
         break;
     }
   }
@@ -189,7 +190,6 @@ class Store {
 
   getTeachers() {
     // Using static data for testing purpose only, will be replaced with an API call below.
-    this.teachers = [{"value":"","name":"Please Choose Teacher"},{"value":"None","name":"None"},{"value":"Abe Hardoon","name":"Abe Hardoon"},{"value":"Adriana D'armas","name":"Adriana D'armas"}]
     /* Commenting the API call for testing purpose, checking with static data 
        only during testing the functionality
     

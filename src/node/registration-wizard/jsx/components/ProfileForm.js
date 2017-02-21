@@ -2,14 +2,14 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
-import { COUNTRIES, MONTHS, DAYS_OF_MONTH, LANGUAGES, GENDERS } from '../constants';
+import { COUNTRIES, MONTHS, DAYS_OF_MONTH, LANGUAGES, GENDERS, TEACHERS } from '../constants';
 
 @inject('store')
 @observer
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { emailValue: null, confirmEmailValue: null };
+		this.state = {buttonStatus:''}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleBlur = this.handleBlur.bind(this);
@@ -35,6 +35,7 @@ export default class extends React.Component {
 		if (valid) {
 			if (subscriptionType == 'free') {
 				this.props.store.submitRegistration(userDetails);
+				this.setState({buttonStatus:'disabled'});
 				//hashHistory.push('result');
 			} else {
 				hashHistory.push('payment');
@@ -127,6 +128,7 @@ export default class extends React.Component {
 		validation, etc. */
 	  let { teachers, userResponse } = this.props.store;
 		if(userResponse != null) {
+			this.setState({buttonStatus:''});
 			if (userResponse.status == 'ok') {
 			  hashHistory.push('result');
 			} else {
@@ -152,7 +154,7 @@ export default class extends React.Component {
 						{this.renderSelectOptionField('day', DAYS_OF_MONTH)}
 						{this.renderSelectOptionField('year', years)}
 						{this.renderSelectOptionField('gender', GENDERS)}
-						{this.renderSelectOptionField('teacher', teachers)}
+						{this.renderSelectOptionField('teacher', TEACHERS)}
 						{this.renderSelectOptionField('country', COUNTRIES)}
 						{this.renderInputField('state')}
 						{this.renderInputField('city')}
@@ -163,6 +165,7 @@ export default class extends React.Component {
 								<input
 									type="submit"
 									value="Create Account"
+									disabled={this.state.buttonStatus}
 									class="btn btn-primary btn-block" />
 							</div>
 						</div>

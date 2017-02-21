@@ -9,6 +9,7 @@ import { CREDIT_CARD_TYPES, CARD_EXPIRY_MONTHS } from '../constants';
 export default class extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {buttonStatus:''}
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
@@ -33,6 +34,7 @@ export default class extends React.Component {
     event.preventDefault();
     if (valid) {
       this.props.store.submitRegistration(userDetails);
+      this.setState({buttonStatus:'disabled'});
       //hashHistory.push('result');
     }
   }
@@ -100,6 +102,7 @@ export default class extends React.Component {
       exparation date, etc. */
     let { userResponse } = this.props.store;
     if(userResponse != null) {
+      this.setState({buttonStatus:''});
       if (userResponse.status == 'ok') {
         hashHistory.push('result');
       } else {
@@ -129,6 +132,7 @@ export default class extends React.Component {
             <input
               type="submit"
               value="Submit Payment"
+              disabled={this.state.buttonStatus}
               class="btn btn-primary btn-block" />
           </div>
         </div>
