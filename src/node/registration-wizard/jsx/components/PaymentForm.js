@@ -134,7 +134,8 @@ export default class extends React.Component {
               value={this.state.isProcessing ?
 							  'Processing...' : 'Submit Payment'}
               disabled={this.state.isProcessing}
-              class="btn btn-primary btn-block" />
+              class="btn btn-primary btn-block" 
+            />
           </div>
         </div>
       </form>
