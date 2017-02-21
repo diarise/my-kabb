@@ -23,17 +23,10 @@ module.exports = {
   output: {
     //path: __dirname + '/src/js/',
     path: '../../jekyll/js/',
-    filename: 'registration.wizard.js',
+    filename: 'subscription.bundle.js',
     publicPath: '/js/'
   },
   plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.optimize.UglifyJsPlugin(),
   ],
-  resolve: {
-    root: [
-      path.resolve('./jsx')
-    ],
-  },
 };
