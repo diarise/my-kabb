@@ -9,7 +9,7 @@ import { COUNTRIES, MONTHS, DAYS_OF_MONTH, LANGUAGES, GENDERS, TEACHERS } from '
 export default class extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {buttonStatus:''}
+		this.state = { isProcessing: false };
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleBlur = this.handleBlur.bind(this);
@@ -34,8 +34,8 @@ export default class extends React.Component {
 		event.preventDefault();
 		if (valid) {
 			if (subscriptionType == 'free') {
-				this.props.store.submitRegistration(userDetails);
-				this.setState({buttonStatus:'disabled'});
+				this.props.store.submitRegistration(userDetails);				
+				this.setState({ isProcessing: true });
 				//hashHistory.push('result');
 			} else {
 				hashHistory.push('payment');
@@ -88,6 +88,7 @@ export default class extends React.Component {
 			</div>
 		);
 	}
+
 	renderSelectOptionField(name, options) {
 		let field = this.props.store.profile[name];
 		var optionList = []
@@ -118,6 +119,7 @@ export default class extends React.Component {
 			</div>
 		);
 	}
+
 	render() {
 	/* TODO I started you off with firstname and lastname, but now
 		we need to add the rest of the profile fields. These are all 
@@ -128,7 +130,7 @@ export default class extends React.Component {
 		validation, etc. */
 	  let { teachers, userResponse } = this.props.store;
 		if(userResponse != null) {
-			this.setState({buttonStatus:''});
+			this.setState({ isProcessing: false });
 			if (userResponse.status == 'ok') {
 			  hashHistory.push('result');
 			} else {
@@ -164,8 +166,9 @@ export default class extends React.Component {
 							<div class="col-md-12">
 								<input
 									type="submit"
-									value="Create Account"
-									disabled={this.state.buttonStatus}
+									value={this.state.isProcessing ?
+										'Processing...' : 'Create Account'}
+									disabled={this.state.isProcessing}
 									class="btn btn-primary btn-block" />
 							</div>
 						</div>
