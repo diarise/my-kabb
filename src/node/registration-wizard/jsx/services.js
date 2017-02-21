@@ -1,4 +1,4 @@
-// TODO Promises are not supported in earlier versions of Internet Explorer
+// TODO Promises are not supported in some versions of Internet Explorer
 //  so we need to accomodate. I think we need the es6-promise library.
 //  Google this to find recommended method.
 import axios from 'axios';

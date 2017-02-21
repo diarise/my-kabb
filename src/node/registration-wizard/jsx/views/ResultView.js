@@ -18,7 +18,13 @@ export default class extends React.Component {
       <div class="col-md-12">
         <h1>Your Registration is Complete!</h1>
         <p>
-          Thank you for registering. Need to insert more text here...
+          Thank you for registering with Kabbalah University. 
+          Please use the following link to login with your new account:
+        </p>
+        <p>
+          <a href="http://university.kabbalah.com">
+            http://university.kabbalah.com
+          </a>
         </p>
       </div>
     );

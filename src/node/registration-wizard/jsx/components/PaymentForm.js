@@ -24,9 +24,6 @@ export default class extends React.Component {
   }
 
   handleSubmit(event) {
-    // TODO Need to disable the submit button so that the user doesn't
-    //  accidentally submit more than once. Also need to display some
-    //  loader graphic instead.
     let userDetails = this.props.store;
     // TODO Need to actually validate payment fields similar to how it is implemented
     //  in the profile form handleSubmit.
@@ -94,12 +91,6 @@ export default class extends React.Component {
   }
 
   render() {
-  /* TODO I started you off with card holder name and credit card num, but now
-      we need to add the rest of the payment fields. Notice that the Field 
-      class in store.js only does
-      basic validation. This class should be tweaked to accomodate
-      more complex (regex based) validation, such as numeric-only,
-      exparation date, etc. */
     let { userResponse } = this.props.store;
     if(userResponse != null) {
       this.setState({ isProcessing: false });
