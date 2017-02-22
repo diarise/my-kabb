@@ -2,6 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
+
 import { CREDIT_CARD_TYPES, CARD_EXPIRY_MONTHS } from '../constants';
 
 @inject('store')
@@ -24,15 +25,12 @@ export default class extends React.Component {
   }
 
   handleSubmit(event) {
-    let userDetails = this.props.store;
-    // TODO Need to actually validate payment fields similar to how it is implemented
-    //  in the profile form handleSubmit.
+    let userDetails = this.props.store;    
     let valid = this.props.store.validatePayment();
     event.preventDefault();
     if (valid) {
       this.props.store.submitRegistration(userDetails);
-      this.setState({ isProcessing: true });
-      //hashHistory.push('result');
+      this.setState({ isProcessing: true });      
     }
   }
 
@@ -93,7 +91,7 @@ export default class extends React.Component {
   render() {
     let { userResponse } = this.props.store;
     if(userResponse != null) {
-      this.setState({ isProcessing: false });
+      this.state.isProcessing = false;
       if (userResponse.status == 'ok') {
         hashHistory.push('result');
       } else {

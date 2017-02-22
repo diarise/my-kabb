@@ -2,6 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
+
 import { COUNTRIES, MONTHS, DAYS_OF_MONTH, LANGUAGES, GENDERS, TEACHERS } from '../constants';
 
 @inject('store')
@@ -16,7 +17,7 @@ export default class extends React.Component {
 	}
 
 	componentWillMount() {
-		this.props.store.getTeachers();
+		//this.props.store.getTeachers();
 	}
 
 	handleChange(event) {
@@ -36,7 +37,6 @@ export default class extends React.Component {
 			if (subscriptionType == 'free') {
 				this.props.store.submitRegistration(userDetails);				
 				this.setState({ isProcessing: true });
-				//hashHistory.push('result');
 			} else {
 				hashHistory.push('payment');
 			}
@@ -121,16 +121,10 @@ export default class extends React.Component {
 	}
 
 	render() {
-	/* TODO I started you off with firstname and lastname, but now
-		we need to add the rest of the profile fields. These are all 
-		the fields on the IDP regiration form except credit card
-		information. Notice that the Field class in store.js only does
-		basic validation. This class should be tweaked to accomodate
-		more complex validation, such as email address (regex based)
-		validation, etc. */
+    	  
 	  let { teachers, userResponse } = this.props.store;
 		if(userResponse != null) {
-			this.setState({ isProcessing: false });
+			this.state.isProcessing = false;
 			if (userResponse.status == 'ok') {
 			  hashHistory.push('result');
 			} else {
@@ -139,41 +133,41 @@ export default class extends React.Component {
 		}
 	  var myDate = new Date();
 	  var year = myDate.getFullYear();
-	  var years = [{name: 'Please Choose DOB Year', value: '' }];
+	  var years = [{name: 'Please Choose DATE OF BIRTH Year', value: '' }];
 		for(var i = 1900; i < year+1; i++) {
 		  years.push({ name: i, value: i })
 		}
-	  		return (
-				<form class="form-horizontal" onSubmit={this.handleSubmit}>
-						{this.renderInputField('firstName')}
-						{this.renderInputField('lastName')}
-						{this.renderInputField('userName')}
-						{this.renderInputField('email')}
-						{this.renderInputField('confirmEmail')}
-						{this.renderPasswordInputField('pass')}
-						{this.renderPasswordInputField('confirmPass')}
-						{this.renderSelectOptionField('month', MONTHS)}
-						{this.renderSelectOptionField('day', DAYS_OF_MONTH)}
-						{this.renderSelectOptionField('year', years)}
-						{this.renderSelectOptionField('gender', GENDERS)}
-						{this.renderSelectOptionField('teacher', TEACHERS)}
-						{this.renderSelectOptionField('country', COUNTRIES)}
-						{this.renderInputField('state')}
-						{this.renderInputField('city')}
-						{this.renderSelectOptionField('language', LANGUAGES)}
-						{this.renderInputField('billingPhone')}
-						<div class="form-group">
-							<div class="col-md-12">
-								<input
-									type="submit"
-									value={this.state.isProcessing ?
-										'Processing...' : 'Create Account'}
-									disabled={this.state.isProcessing}
-									class="btn btn-primary btn-block"
-								/>
-							</div>
-						</div>
-				</form>
+		return (
+			<form class="form-horizontal" onSubmit={this.handleSubmit}>
+			  {this.renderInputField('firstName')}
+			  {this.renderInputField('lastName')}
+			  {this.renderInputField('userName')}
+			  {this.renderInputField('email')}
+			  {this.renderInputField('confirmEmail')}
+			  {this.renderPasswordInputField('pass')}
+			  {this.renderPasswordInputField('confirmPass')}
+			  {this.renderSelectOptionField('month', MONTHS)}
+			  {this.renderSelectOptionField('day', DAYS_OF_MONTH)}
+			  {this.renderSelectOptionField('year', years)}
+			  {this.renderSelectOptionField('gender', GENDERS)}
+			  {this.renderSelectOptionField('teacher', TEACHERS)}
+			  {this.renderSelectOptionField('country', COUNTRIES)}
+			  {this.renderInputField('state')}
+			  {this.renderInputField('city')}
+			  {this.renderSelectOptionField('language', LANGUAGES)}
+			  {this.renderInputField('billingPhone')}
+			<div class="form-group">
+				<div class="col-md-12">
+					<input
+						type="submit"
+						value={this.state.isProcessing ?
+							'Processing...' : 'Create Account'}
+						disabled={this.state.isProcessing}
+						class="btn btn-primary btn-block"
+					/>
+				</div>
+			</div>
+			</form>
 		);
 	}
 }

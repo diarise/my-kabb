@@ -14,13 +14,12 @@ export default class extends React.Component {
   }
 
   render() {
-    let { subscriptionType } = this.props.store;
-
+    let { subscriptionTitle } = this.props.store;
     return (
       <div class="col-md-12">
         <h1>Please Create Your Account</h1>
         <p>
-          <strong>Subscription Type:</strong> {subscriptionType}
+          <strong>Subscription Type:</strong> {subscriptionTitle}
         </p>
         <ProfileForm />
       </div>

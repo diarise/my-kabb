@@ -1,4 +1,5 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
 
@@ -7,15 +8,19 @@ import { PaymentForm } from '../components';
 @inject('store')
 @observer
 export default class extends React.Component {
-  /* TODO Need to validate that profile information is valid in the store before loading
-      this view. For example, we want to make sure the user did not arrive at this
-      view before going through the profile view first. If profile data is not
-      valid, user should be redirected back to profile view. Perhaps this 
-      belongs in the constructor */
+  constructor(props) {
+		super(props);
+	}
+
+  componentWillMount() {
+    let valid = this.props.store.validateProfile();
+		if (!valid) {
+      hashHistory.push('profile');
+    }
+	}
 
   render() {
-    let { profile, subscriptionType, subscriptionCost } = this.props.store;
-    // TODO Make the subscriptionType and price labels prettier
+    let { profile, subscriptionTitle, subscriptionPrice } = this.props.store;    
     return (
       <div class="col-md-12">
         <h1>Please Enter Your Payment Details</h1>
@@ -24,10 +29,10 @@ export default class extends React.Component {
           {profile.firstName.value + ' ' + profile.lastName.value}
         </p>
         <p>
-          <strong>Subscription Type:</strong> {subscriptionType}
+          <strong>Subscription Type:</strong> {subscriptionTitle}
         </p>
         <p>
-          <strong>Total Monthly Cost:</strong> {subscriptionCost}
+          <strong>Total Monthly Cost:</strong> ${subscriptionPrice}
         </p>
         <PaymentForm />
       </div>

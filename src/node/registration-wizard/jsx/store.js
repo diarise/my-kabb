@@ -1,5 +1,6 @@
 import { action, observable } from 'mobx';
 
+import { SUBSCRIPTION_TYPES } from './constants'
 import services from './services'
 
 var confirmValue = observable({
@@ -27,7 +28,9 @@ class Field {
     }
     let emailFormat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     let phoneFormat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-    var letters = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/
+    let letters = /^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/
+    let cardNumber = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+    let cvv = /^[0-9]{1,4}$/
     switch (this.name) {
       case 'email':
         confirmValue.emailValue = this.value;
@@ -56,29 +59,25 @@ class Field {
           this.errors.push('Please enter a valid phone number');
         }
         break;
-      case 'state':
-        if (!this.value.match(letters) && this.value.length && this.required) {
-          this.errors.push('Please enter a valid state name');
-        }
-        break;
       case 'city':
         if (!this.value.match(letters) && this.value.length && this.required) {
           this.errors.push('Please enter a valid city name');
         }
         break;
-      case 'cardCvv':
-        var cvv = /^[0-9]{1,4}$/
+      case 'cardCvv':        
         if ((!this.value.match(cvv)) && this.value.length && this.required) {
           this.errors.push('Please enter a valid security code');
         }
         break;
-      case 'creditCardNumber':
-        var cardNumber = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/
+      case 'creditCardNumber':        
         if ((!this.value.match(cardNumber)) && this.value.length && this.required) {
           this.errors.push('Please enter a valid card number');
         }
         break;
       case 'coupon':
+        this.errors.replace([]);
+        break;
+      case 'state':
         this.errors.replace([]);
         break;
     }
@@ -87,7 +86,9 @@ class Field {
 
 class Store {
   @observable subscriptionType = 'free';
-  @observable subscriptionCost = null;
+  @observable subscriptionPrice = null;
+  @observable subscriptionId = 1;
+  @observable subscriptionTitle = 'Free';
   @observable teachers = []
   @observable userResponse = null;
   profile = {
@@ -122,19 +123,31 @@ class Store {
 
   @action
   setSubscriptionType(subscriptionName) {
-    // TODO validate that the subscriptionName is not null and matches 
-    //  an actual subscription (or fallback if null)
     this.subscriptionType = subscriptionName;
     switch (this.subscriptionType) {
+      case 'free':
+        this.subscriptionType = SUBSCRIPTION_TYPES[0]['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES[0]['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES[0]['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES[0]['price'];
+        break;
       case 'basic':
-        this.subscriptionCost = '$9.00';
+        this.subscriptionType = SUBSCRIPTION_TYPES[1]['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES[1]['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES[1]['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES[1]['price'];
         break;
       case 'premium':
-        this.subscriptionCost = '$18.00';
+        this.subscriptionType = SUBSCRIPTION_TYPES[2]['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES[2]['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES[2]['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES[2]['price'];
         break;
       case 'premiumPlus':
-        this.subscriptionCost = '$42.00';
-        this.subscriptionType = 'premium plus';        
+        this.subscriptionType = SUBSCRIPTION_TYPES[3]['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES[3]['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES[3]['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES[3]['price'];      
         break;
     }
   }
@@ -148,8 +161,7 @@ class Store {
   setPaymentField(key, value) {
     this.payment[key].value = value;
   }
-
-  // Returns true if all profile fields are valid
+  
   validateProfile() {
     let isValid = true;
     for (let [key, field] of Object.entries(this.profile)) {
@@ -160,7 +172,7 @@ class Store {
     }
     return isValid;
   }
-  // Returns true if all payment fields are valid  
+  
   validatePayment() {
     let isValid = true;
     for (let [key, field] of Object.entries(this.payment)) {

@@ -1,9 +1,20 @@
 import React from 'react';
+import { hashHistory } from 'react-router';
 
 import { inject } from 'mobx-react';
 
 @inject('store')
 export default class extends React.Component {
+  constructor(props) {
+		super(props);
+	}
+
+  componentWillMount() {
+    let { userResponse } = this.props.store;
+    if (userResponse == null) {
+      hashHistory.push('profile');        
+    }
+	}  
   render() {
   /* TODO Need to actually check whether registration succeeded. For exmple,
       need to check if the store->submitRegistration function resulted in

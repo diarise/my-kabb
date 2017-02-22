@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'Please Choose DOB Day',
+    name: 'Please Choose DATE OF BIRTH Day',
     value: ''
   },
   {
