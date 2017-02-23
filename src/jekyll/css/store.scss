@@ -1,0 +1,130 @@
+---
+---
+
+/*steve style for store*/
+
+.overlayWrapper{
+    background: url(../images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+    font-family: 'Roboto', sans-serif;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+    background: rgba(66,67,128, .8); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(66,67,128, .8) 0%, rgba(141,206,255, .8) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(66,67,128, .8) 0%, rgba(141,206,255, .8) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(66,67,128, .8) 0%, rgba(141,206,255, .8) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424380', endColorstr='#8dceff',GradientType=1 ); /* IE6-9 */
+}
+
+.region-selector{
+    width:100%;
+    max-width:460px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color:#fff;
+}
+.region-selector .inner-container{
+    margin:10px;
+    border:2px solid #218592;
+    min-height:300px;
+}
+
+.region-selector .content{
+    padding:20px;
+}
+
+.region-selector .content img{
+    width:100%;
+}
+
+.region-selector .selector{
+    max-width:320px;
+    width:100%;
+    display:inline-block;
+    margin:0 auto;
+}
+.selector div{
+    padding:5px 0;
+    border-bottom:1px solid #218592;
+}
+
+.selector div a {
+    display:block;
+    color:#000;
+}
+.selector div a:hover {
+    text-decoration:none;
+    color:#218592;
+}
+
+.selector div:last-of-type{
+    border-bottom:0;
+}
+
+.selector span {
+	font-size: 11px;
+}
+
+.center{
+    text-align:center;
+}
+.uppercase{
+    text-transform:uppercase;
+}
+
+.m-t-b-20{
+    margin:20px 0;
+}
+.m-b-20 {
+	margin-bottom: 20px;
+}
+.m-t-20 {
+	margin-top: 20px;
+}
+.bold{
+    font-weight:600;
+}
+.f-s-16{
+    font-size:16px;
+}
+.f-s-18{
+    font-size:18px;
+}
+
+.l-s-25 {
+    letter-spacing: .04em;
+}
+
+.l-s-50 {
+    letter-spacing: .06em;
+}
+
+.l-s-75 {
+    letter-spacing: .10em;
+}
+
+.l-s-100 {
+    letter-spacing: .12em;
+}
+
+/*end steven css*/

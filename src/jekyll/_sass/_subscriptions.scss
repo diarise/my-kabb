@@ -1,0 +1,57 @@
+$freeColor: #444549;
+$basicColor: #348ff0;
+$premiumColor: #0c539d;
+$premiumPlusColor: #c7332f;
+
+@mixin subscription-box($bgColor) {
+	a {
+		color: #212121;
+		font-weight: 100;
+	}
+
+	.well {
+		background-color: $bgColor;
+		color: #fff;
+
+		#best-value {		
+			background-color: #F1A40B;
+					
+		}
+	}
+
+	&:hover {
+		* {
+			color: #bbb666;
+			text-decoration: none;
+		}
+  	}
+}
+
+#free-subscription {
+	@include subscription-box($freeColor);
+}
+
+#basic-subscription {
+	@include subscription-box($basicColor);
+}
+
+#premium-subscription {
+	@include subscription-box($premiumColor);
+}
+
+#premium-plus-subscription {
+	@include subscription-box($premiumPlusColor);
+}
+
+#subscription-lead {
+	background: #000;
+    color: #fff;
+    //position: fixed;
+    //width: 100%;
+    //top: 0;
+
+    img {
+		opacity: 0.5;
+		width: 100%;
+    }	
+}

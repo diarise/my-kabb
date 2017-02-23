@@ -1,8 +1,17 @@
 ---
 ---
 
-@import 'subscriptions';
-
+// start content
+.my-definition {
+  font-size: 1.2em
+}
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 // Variables
 
 $freeColor: #444549;
