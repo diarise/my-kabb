@@ -43,15 +43,19 @@ $premiumPlusColor: #c7332f;
 	@include subscription-box($premiumPlusColor);
 }
 
-#subscription-lead {
-	background: #000;
+#subscription-header {
+	background-color: #000;
+	//background-image: url("/images/master-class.jpg");
+	//background-repeat: no-repeat;
+	//background-position: 50% 50%;
     color: #fff;
-    //position: fixed;
-    //width: 100%;
-    //top: 0;
+	padding: 80px;
+}
 
-    img {
-		opacity: 0.5;
-		width: 100%;
-    }	
+#subscription-footer {
+	background-color: #000;
+	color: #fff;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	
 }
