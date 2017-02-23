@@ -45,9 +45,10 @@ export default class extends React.Component {
 
 	renderInputField(name) {
 		let field = this.props.store.profile[name];
+		
 		return (
 			<div class={'form-group ' + (field.errors.length > 0 && 'has-error')}>
-				<div class="col-md-12">
+				<div class = "col-md-12">
 					<input
 						name={field.name}
 						placeholder={field.label}
@@ -89,7 +90,7 @@ export default class extends React.Component {
 		);
 	}
 
-	renderSelectOptionField(name, options) {
+	renderSelectOptionField(name, options, attr) {
 		let field = this.props.store.profile[name];
 		var optionList = []
 		if (options.length != 0) {
@@ -100,7 +101,8 @@ export default class extends React.Component {
 			}
 		}
 		return (
-			<div class={'form-group ' + (field.errors.length > 0 && 'has-error')}>
+			<div class={'form-group ' + (field.errors.length > 0 && 'has-error') +
+				' ' + (attr.class != undefined ? attr.class: '')}>
 				<div class="col-md-12">
 					<select
 						value={field.value}
@@ -121,7 +123,6 @@ export default class extends React.Component {
 	}
 
 	render() {
-    	  
 	  let { teachers, userResponse } = this.props.store;
 		if(userResponse != null) {
 			this.state.isProcessing = false;
@@ -146,15 +147,15 @@ export default class extends React.Component {
 			  {this.renderInputField('confirmEmail')}
 			  {this.renderPasswordInputField('pass')}
 			  {this.renderPasswordInputField('confirmPass')}
-			  {this.renderSelectOptionField('month', MONTHS)}
-			  {this.renderSelectOptionField('day', DAYS_OF_MONTH)}
-			  {this.renderSelectOptionField('year', years)}
-			  {this.renderSelectOptionField('gender', GENDERS)}
-			  {this.renderSelectOptionField('teacher', TEACHERS)}
-			  {this.renderSelectOptionField('country', COUNTRIES)}
+			  {this.renderSelectOptionField('month', MONTHS, {'class': 'col-md-4 no-padding-left'})}
+			  {this.renderSelectOptionField('day', DAYS_OF_MONTH, {'class': 'col-md-4'})}
+			  {this.renderSelectOptionField('year', years, {'class': 'col-md-4'})}
+			  {this.renderSelectOptionField('gender', GENDERS, {})}
+			  {this.renderSelectOptionField('teacher', TEACHERS, {})}
+			  {this.renderSelectOptionField('country', COUNTRIES, {})}
 			  {this.renderInputField('state')}
 			  {this.renderInputField('city')}
-			  {this.renderSelectOptionField('language', LANGUAGES)}
+			  {this.renderSelectOptionField('language', LANGUAGES, {})}
 			  {this.renderInputField('billingPhone')}
 			<div class="form-group">
 				<div class="col-md-12">

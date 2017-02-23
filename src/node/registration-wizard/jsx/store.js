@@ -80,6 +80,18 @@ class Field {
       case 'state':
         this.errors.replace([]);
         break;
+      case 'month':
+        this.errors.replace([]);
+        break;
+      case 'day':
+        this.errors.replace([]);
+        break;
+      case 'year':
+        this.errors.replace([]);
+        break;
+      case 'gender':
+        this.errors.replace([]);
+        break;
     }
   }
 }
@@ -126,28 +138,28 @@ class Store {
     this.subscriptionType = subscriptionName;
     switch (this.subscriptionType) {
       case 'free':
-        this.subscriptionType = SUBSCRIPTION_TYPES[0]['name'];
-        this.subscriptionId = SUBSCRIPTION_TYPES[0]['id'];
-        this.subscriptionTitle = SUBSCRIPTION_TYPES[0]['title'];
-        this.subscriptionPrice = SUBSCRIPTION_TYPES[0]['price'];
+        this.subscriptionType = SUBSCRIPTION_TYPES['free']['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES['free']['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES['free']['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES['free']['price'];
         break;
       case 'basic':
-        this.subscriptionType = SUBSCRIPTION_TYPES[1]['name'];
-        this.subscriptionId = SUBSCRIPTION_TYPES[1]['id'];
-        this.subscriptionTitle = SUBSCRIPTION_TYPES[1]['title'];
-        this.subscriptionPrice = SUBSCRIPTION_TYPES[1]['price'];
+        this.subscriptionType = SUBSCRIPTION_TYPES['basic']['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES['basic']['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES['basic']['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES['basic']['price'];
         break;
       case 'premium':
-        this.subscriptionType = SUBSCRIPTION_TYPES[2]['name'];
-        this.subscriptionId = SUBSCRIPTION_TYPES[2]['id'];
-        this.subscriptionTitle = SUBSCRIPTION_TYPES[2]['title'];
-        this.subscriptionPrice = SUBSCRIPTION_TYPES[2]['price'];
+        this.subscriptionType = SUBSCRIPTION_TYPES['premium']['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES['premium']['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES['premium']['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES['premium']['price'];
         break;
       case 'premiumPlus':
-        this.subscriptionType = SUBSCRIPTION_TYPES[3]['name'];
-        this.subscriptionId = SUBSCRIPTION_TYPES[3]['id'];
-        this.subscriptionTitle = SUBSCRIPTION_TYPES[3]['title'];
-        this.subscriptionPrice = SUBSCRIPTION_TYPES[3]['price'];      
+        this.subscriptionType = SUBSCRIPTION_TYPES['premiumPlus']['name'];
+        this.subscriptionId = SUBSCRIPTION_TYPES['premiumPlus']['id'];
+        this.subscriptionTitle = SUBSCRIPTION_TYPES['premiumPlus']['title'];
+        this.subscriptionPrice = SUBSCRIPTION_TYPES['premiumPlus']['price'];      
         break;
     }
   }
@@ -185,15 +197,8 @@ class Store {
   }
 
   submitRegistration(payLoad) {
-    // TODO construct actual payload with appropriate data
-    //let payLoad = 'This object should actually include profile and payment data';
-    // TODO Need to actually process the web service call response, 
-    //  and store errors/success so that observer components can
-    //  react accordingly.      
     services.submitRegistration(payLoad).then(data => {
       this.userResponse = data;
-      // TODO Do something meaningful with the returned data such
-      //  as storing it in an observable object
     }).catch(error => {
       // TODO Do something meaningful with the returned error such
       //  as storing it in an observable error object            

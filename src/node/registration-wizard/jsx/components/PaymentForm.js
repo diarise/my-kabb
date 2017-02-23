@@ -57,7 +57,7 @@ export default class extends React.Component {
     );
   }
 
-  renderSelectOptionField(name, options) {
+  renderSelectOptionField(name, options, attr) {
     let field = this.props.store.payment[name];
     var optionList = []
     if (options.length != 0) {
@@ -68,7 +68,8 @@ export default class extends React.Component {
       }
     }
     return (
-      <div class={'form-group ' + (field.errors.length > 0 && 'has-error')}>
+      <div class={'form-group ' + (field.errors.length > 0 && 'has-error')+
+				' ' + (attr.class != undefined ? attr.class: '')}>
         <div class="col-md-12">
           <select
             value={field.value}
@@ -109,11 +110,11 @@ export default class extends React.Component {
 
     return (
       <form class="form-horizontal" onSubmit={this.handleSubmit}>
-        {this.renderSelectOptionField('cardType', CREDIT_CARD_TYPES)}
+        {this.renderSelectOptionField('cardType', CREDIT_CARD_TYPES, {})}
         {this.renderInputField('cardHolderName')}
         {this.renderInputField('creditCardNumber')}
-        {this.renderSelectOptionField('cardExpiryMonth', CARD_EXPIRY_MONTHS)}
-        {this.renderSelectOptionField('cardExpiryYear', years)}
+        {this.renderSelectOptionField('cardExpiryMonth', CARD_EXPIRY_MONTHS, {'class': 'col-md-6 no-padding-left'})}
+        {this.renderSelectOptionField('cardExpiryYear', years, {'class': 'col-md-6'})}
         {this.renderInputField('cardCvv')}
         {this.renderInputField('coupon')}
         <div class="form-group">

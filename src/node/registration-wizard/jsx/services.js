@@ -13,10 +13,6 @@ function submitRegistration(payLoad) {
   } else {
     data = { "first_name": payLoad.profile.firstName.value, "last_name": payLoad.profile.lastName.value, "user_name": payLoad.profile.userName.value, "email": payLoad.profile.email.value, "confirm_email": payLoad.profile.confirmEmail.value, "pass": payLoad.profile.pass.value, "dob": { "month": payLoad.profile.month.value, "day": payLoad.profile.day.value, "year": payLoad.profile.year.value }, "gender": payLoad.profile.gender.value, "teacher": payLoad.profile.teacher.value, "country": payLoad.profile.country.value, "state": payLoad.profile.state.value, "city": payLoad.profile.city.value, "language": payLoad.profile.language.value, "billing_phone": payLoad.profile.billingPhone.value, "amount": payLoad.subscriptionPrice, "subscription_id": payLoad.subscriptionId, "subscription_name": payLoad.subscriptionType };
   }
-  /*  TODO use axios to return a promise. Here is an example of axios.get.
-      axios.post is very similar (you just need to provide the payload).
-      Please use arrow functions for neatness.
-  */
   return (
     axios.post(url, data)
       .then(response => {
@@ -26,17 +22,10 @@ function submitRegistration(payLoad) {
         //throw 'Ajax module: '+error // E.g. could be: Network Error
       })
   )
-  return (
-    'Need to actually return a promise...'
-  );
 }
 
 function getTeachers() {
   let url = env.GET_TEACHERS_URL;
-  /*  TODO use axios to return a promise. Here is an example of axios.get.
-      axios.post is very similar (you just need to provide the payload).
-      Please use arrow functions for neatness.
-  */
   return (
     axios.get(url)
       .then(response => {
@@ -46,9 +35,6 @@ function getTeachers() {
         //throw 'Ajax module: '+error // E.g. could be: Network Error
       })
   )
-  return (
-    'Need to actually return a promise...'
-  );
 }
 export default {
   submitRegistration,
