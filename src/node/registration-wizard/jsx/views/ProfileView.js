@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 
 import { ProfileForm } from '../components';
 
+let URLSearchParams = require('url-search-params');
 @inject('store')
 @observer
 export default class extends React.Component {
