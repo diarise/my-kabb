@@ -2,6 +2,7 @@ import React from 'react';
 import { hashHistory } from 'react-router';
 
 import { inject, observer } from 'mobx-react';
+import 'core-js'
 
 import { COUNTRIES, MONTHS, DAYS_OF_MONTH, LANGUAGES, GENDERS, TEACHERS } from '../constants';
 

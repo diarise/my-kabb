@@ -1,4 +1,5 @@
 import { action, observable } from 'mobx';
+import 'core-js'
 
 import { SUBSCRIPTION_TYPES } from './constants'
 import services from './services'
