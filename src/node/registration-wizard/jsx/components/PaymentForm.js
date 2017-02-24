@@ -113,8 +113,8 @@ export default class extends React.Component {
         {this.renderSelectOptionField('cardType', CREDIT_CARD_TYPES, {})}
         {this.renderInputField('cardHolderName')}
         {this.renderInputField('creditCardNumber')}
-        {this.renderSelectOptionField('cardExpiryMonth', CARD_EXPIRY_MONTHS, {'class': 'col-md-6 no-padding-left'})}
-        {this.renderSelectOptionField('cardExpiryYear', years, {'class': 'col-md-6'})}
+        {this.renderSelectOptionField('cardExpiryMonth', CARD_EXPIRY_MONTHS, {})}
+        {this.renderSelectOptionField('cardExpiryYear', years, {})}
         {this.renderInputField('cardCvv')}
         {this.renderInputField('coupon')}
         <div class="form-group">

@@ -147,9 +147,9 @@ export default class extends React.Component {
 			  {this.renderInputField('confirmEmail')}
 			  {this.renderPasswordInputField('pass')}
 			  {this.renderPasswordInputField('confirmPass')}
-			  {this.renderSelectOptionField('month', MONTHS, {'class': 'col-md-4 no-padding-left'})}
-			  {this.renderSelectOptionField('day', DAYS_OF_MONTH, {'class': 'col-md-4'})}
-			  {this.renderSelectOptionField('year', years, {'class': 'col-md-4'})}
+			  {this.renderSelectOptionField('month', MONTHS, {})}
+			  {this.renderSelectOptionField('day', DAYS_OF_MONTH, {})}
+			  {this.renderSelectOptionField('year', years, {})}
 			  {this.renderSelectOptionField('gender', GENDERS, {})}
 			  {this.renderSelectOptionField('teacher', TEACHERS, {})}
 			  {this.renderSelectOptionField('country', COUNTRIES, {})}

@@ -21,7 +21,7 @@ $premiumPlusColor: #c7332f;
 
 	&:hover {
 		* {
-			color: #bbb666;
+			font-weight: bold;
 			text-decoration: none;
 		}
   	}
@@ -43,7 +43,7 @@ $premiumPlusColor: #c7332f;
 	@include subscription-box($premiumPlusColor);
 }
 
-#subscription-header {
+#subscription-lead {
 	background-color: #000;
 	//background-image: url("/images/master-class.jpg");
 	//background-repeat: no-repeat;

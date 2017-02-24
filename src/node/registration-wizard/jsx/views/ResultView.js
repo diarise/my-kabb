@@ -26,17 +26,21 @@ export default class extends React.Component {
   // TODO Non programming task: need to come up with text to display
   //  to the user for registration success and failure.
     return (
-      <div class="col-md-12">
-        <h1>Your Registration is Complete!</h1>
-        <p>
-          Thank you for registering with Kabbalah University. 
-          Please use the following link to login with your new account:
-        </p>
-        <p>
-          <a href="http://university.kabbalah.com">
-            http://university.kabbalah.com
-          </a>
-        </p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Your Registration is Complete!</h2>
+            <p>
+              Thank you for registering with Kabbalah University. 
+              Please use the following link to login with your new account:
+            </p>
+            <p>
+              <a href="http://university.kabbalah.com">
+                http://university.kabbalah.com
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -2,18 +2,12 @@
 <html>
     <head>
         <title>{{ page.title }}</title>
-        <!-- Include CloudFront CSS paths for fallback -->
-        <link href="{{ site.static_cdn }}/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ site.static_cdn }}/css/main.css" rel="stylesheet">
         <!-- Local CSS paths -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/main.css" rel="stylesheet">
     </head>
     <body>
         {{ content }}
-        <!-- Include CloudFront JS paths for fallback -->
-        <script src="{{ site.static_cdn }}/js/jquery.min.js"></script>
-        <script src="{{ site.static_cdn }}/js/bootstrap.min.js"></script>
         <!-- Local JS paths -->
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
