@@ -104,6 +104,7 @@ class Store {
   @observable subscriptionTitle = 'Free';
   @observable teachers = []
   @observable userResponse = null;
+  @observable error = null;
   profile = {
     firstName: new Field('firstName', 'First Name'),
     lastName: new Field('lastName', 'Last Name'),
@@ -201,8 +202,8 @@ class Store {
     services.submitRegistration(payLoad).then(data => {
       this.userResponse = data;
     }).catch(error => {
-      // TODO Do something meaningful with the returned error such
-      //  as storing it in an observable error object            
+      this.error = error;
+      alert(this.error);           
     });
   }
 

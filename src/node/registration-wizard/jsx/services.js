@@ -1,6 +1,3 @@
-// TODO Promises are not supported in some versions of Internet Explorer
-//  so we need to accomodate. I think we need the es6-promise library.
-//  Google this to find recommended method.
 import axios from 'axios';
 
 import env from './env';
@@ -19,7 +16,7 @@ function submitRegistration(payLoad) {
         return response.data;
       })
       .catch(error => {
-        //throw 'Ajax module: '+error // E.g. could be: Network Error
+        alert(error);
       })
   )
 }
@@ -32,7 +29,7 @@ function getTeachers() {
         return response.data;
       })
       .catch(error => {
-        //throw 'Ajax module: '+error // E.g. could be: Network Error
+        alert(error);
       })
   )
 }
