@@ -106,7 +106,7 @@ export default class extends React.Component {
 				' ' + (attr.class != undefined ? attr.class: '')}>
 				<div class="col-md-12">
 					<select
-						value={field.value}
+						value={field.value}											
 						name={field.name}
 						class="form-control"
 						onChange={this.handleChange}
@@ -130,7 +130,9 @@ export default class extends React.Component {
 			if (userResponse.status == 'ok') {
 			  hashHistory.push('result');
 			} else {
-			  alert(userResponse.error_description);
+				  if(userResponse.error_description != undefined) {
+					  alert(userResponse.error_description);
+					}			  
 			}
 		}
 	  var myDate = new Date();

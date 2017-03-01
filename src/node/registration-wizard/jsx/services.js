@@ -17,6 +17,7 @@ function submitRegistration(payLoad) {
       })
       .catch(error => {
         alert(error);
+        return false;
       })
   )
 }

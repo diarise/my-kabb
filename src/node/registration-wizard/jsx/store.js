@@ -12,11 +12,12 @@ var confirmValue = observable({
 class Field {
   @observable value = '';
   @observable errors = [];
-  constructor(name, label, required = true, minChars = 0) {
+  constructor(name, label, required = true, minChars = 0, value = '') {
     this.name = name;
     this.label = label;
     this.required = required;
     this.minChars = minChars;
+    this.value = value;
   }
 
   validate() {
@@ -75,24 +76,6 @@ class Field {
           this.errors.push('Please enter a valid card number');
         }
         break;
-      case 'coupon':
-        this.errors.replace([]);
-        break;
-      case 'state':
-        this.errors.replace([]);
-        break;
-      case 'month':
-        this.errors.replace([]);
-        break;
-      case 'day':
-        this.errors.replace([]);
-        break;
-      case 'year':
-        this.errors.replace([]);
-        break;
-      case 'gender':
-        this.errors.replace([]);
-        break;
     }
   }
 }
@@ -113,13 +96,13 @@ class Store {
     confirmEmail: new Field('confirmEmail', 'Confirm Email'),
     pass: new Field('pass', 'Password'),
     confirmPass: new Field('confirmPass', 'Confirm Password'),
-    month: new Field('month', 'Month'),
-    day: new Field('day', 'Day'),
-    year: new Field('year', 'Year'),
-    gender: new Field('gender', 'Gender'),
+    month: new Field('month', 'Month', false),
+    day: new Field('day', 'Day', false),
+    year: new Field('year', 'Year', false),
+    gender: new Field('gender', 'Gender', false),
     teacher: new Field('teacher', 'Teacher'),
-    country: new Field('country', 'Country'),
-    state: new Field('state', 'State'),
+    country: new Field('country', 'Country', true, 0, 'US'),
+    state: new Field('state', 'State', false),
     city: new Field('city', 'City'),
     language: new Field('language', 'Language'),
     billingPhone: new Field('billingPhone', 'Phone Number'),
@@ -132,7 +115,7 @@ class Store {
     cardExpiryMonth: new Field('cardExpiryMonth', 'Credit Card Expiry Month'),
     cardExpiryYear: new Field('cardExpiryYear', 'Credit Card Expiry Year'),
     cardCvv: new Field('cardCvv', 'Credit Card CVV Number'),
-    coupon: new Field('coupon', 'Coupon Code (If Available)'),
+    coupon: new Field('coupon', 'Coupon Code (If Available)', false),
   }
 
   @action
@@ -203,7 +186,8 @@ class Store {
       this.userResponse = data;
     }).catch(error => {
       this.error = error;
-      alert(this.error);           
+      alert(this.error); 
+      return false;          
     });
   }
 
