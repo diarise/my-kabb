@@ -184,6 +184,10 @@ class Store {
   submitRegistration(payLoad) {
     services.submitRegistration(payLoad).then(data => {
       this.userResponse = data;
+      if (data.status != 'ok' && data.error_description != undefined) {
+        alert(data.error_description);
+      }
+      this.userResponse = data;
     }).catch(error => {
       this.error = error;
       alert(this.error); 
