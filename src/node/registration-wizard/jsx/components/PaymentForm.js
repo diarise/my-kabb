@@ -95,10 +95,6 @@ export default class extends React.Component {
       this.state.isProcessing = false;
       if (userResponse.status == 'ok') {
         hashHistory.push('result');
-      } else {
-          if(userResponse.error_description != undefined) {
-            alert(userResponse.error_description);
-          }	
       }
     }
 
