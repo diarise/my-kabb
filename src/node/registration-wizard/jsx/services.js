@@ -22,6 +22,22 @@ function submitRegistration(payLoad) {
   )
 }
 
+function checkUserExists(payLoad) {
+  let url = env.CHECK_USER_EXISTS_URL;
+  let userName = payLoad.profile.userName.value;
+  let email = payLoad.profile.email.value;
+  return (
+    axios.get(url+'?userName='+userName+'&email='+email)
+      .then(response => {
+        return response.data;
+      })
+      .catch(error => {
+        alert(error);
+        return false;
+      })
+  )
+}
+
 function getTeachers() {
   let url = env.GET_TEACHERS_URL;
   return (
@@ -37,4 +53,5 @@ function getTeachers() {
 export default {
   submitRegistration,
   getTeachers,
+  checkUserExists,
 }

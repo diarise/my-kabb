@@ -87,6 +87,7 @@ class Store {
   @observable subscriptionTitle = 'Free';
   @observable teachers = []
   @observable userResponse = null;
+  @observable userExists = null;
   @observable error = null;
   profile = {
     firstName: new Field('firstName', 'First Name'),
@@ -192,6 +193,16 @@ class Store {
       this.error = error;
       alert(this.error); 
       return false;          
+    });
+  }
+
+  checkUserExists(payLoad) {
+    services.checkUserExists(payLoad).then(data => {
+      this.userExists = data;
+    }).catch(error => {
+      this.error = error;
+      alert(this.error);
+      return false;
     });
   }
 

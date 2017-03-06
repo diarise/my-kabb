@@ -26,23 +26,33 @@ export default class extends React.Component {
 	}
 
 	handleBlur(event) {
-		this.props.store.profile[event.target.name].validate();
-	}
+    let userDetails = this.props.store;
+    this.props.store.profile[event.target.name].validate();
+    if (event.target.name == 'email' || event.target.name =='userName') {
+      this.props.store.checkUserExists(userDetails);
+    }
+  }
 
 	handleSubmit(event) {
-		let { subscriptionType } = this.props.store;
-		let userDetails = this.props.store;
-		let valid = this.props.store.validateProfile();
-		event.preventDefault();
-		if (valid) {
-			if (subscriptionType == 'free') {
-				this.props.store.submitRegistration(userDetails);				
-				this.setState({ isProcessing: true });
-			} else {
-				hashHistory.push('payment');
-			}
-		}
-	}
+    let { subscriptionType, userExists } = this.props.store;
+    let userDetails = this.props.store;
+    let valid = this.props.store.validateProfile();
+    event.preventDefault();
+    if (valid) {
+      if (subscriptionType == 'free') {
+        this.setState({ isProcessing: true });
+        this.props.store.submitRegistration(userDetails);
+      } else {
+          if (userExists != null) {
+            if(userExists.status == 'ok') {
+              hashHistory.push('payment');
+            } else {
+                alert(userExists.error_description);
+            }
+          }
+      }
+    }
+  }
 
 	renderInputField(name) {
 		let field = this.props.store.profile[name];
