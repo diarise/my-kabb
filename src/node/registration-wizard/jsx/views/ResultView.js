@@ -5,34 +5,34 @@ import { inject } from 'mobx-react';
 
 @inject('store')
 export default class extends React.Component {
-  constructor(props) {
-		super(props);
-	}
-
-  componentWillMount() {
-    let { userResponse } = this.props.store;
-    if (userResponse == null) {
-      hashHistory.push('profile');        
+    constructor(props) {
+        super(props);
     }
-	}  
-  render() {
-    return (
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h2>Your Registration is Complete!</h2>
-            <p>
-              Thank you for registering with Kabbalah University. 
-              Please use the following link to login with your new account:
-            </p>
-            <p>
-              <a href="http://university.kabbalah.com">
-                http://university.kabbalah.com
-              </a>
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
+    componentWillMount() {
+        let { userResponse } = this.props.store;
+        if (userResponse == null) {
+            hashHistory.push('profile');        
+        }
+    }  
+    render() {
+        return (
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Your Registration is Complete!</h2>
+                        <p>
+                            Thank you for registering with Kabbalah University. 
+                            Please use the following link to login with your new account:
+                        </p>
+                        <p>
+                            <a href="http://university.kabbalah.com">
+                                http://university.kabbalah.com
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
