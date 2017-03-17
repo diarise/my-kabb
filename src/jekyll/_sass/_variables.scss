@@ -1,0 +1,33 @@
+// ########################
+// BOOTSTRAP DEFAULTS
+// ########################
+
+// Boot strap color pallete
+$white:  #fff !default;
+$black:  #000 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #5cb85c !default;
+$blue:   #0275d8 !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+
+// Bootstrap greyscale
+$gray-dark:                 #292b2c !default;
+$gray:                      #464a4c !default;
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+// ########################
+// KABBALAH CUSTOM COLORS
+// ########################
+
+$darkest: $black;
+$darker: #433a3a;
+$dark: #564e4e;
+$light: rgba($white, 0.5);
+$lighter: rgba($white, 0.75);
+$lightest: rgba($white, 1);
