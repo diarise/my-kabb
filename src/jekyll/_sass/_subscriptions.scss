@@ -4,14 +4,10 @@ $premiumColor: #0c539d;
 $premiumPlusColor: #c7332f;
 
 @mixin subscription-box($bgColor) {
-	a {
-		color: #212121;
-		font-weight: 100;
-	}
+	padding-bottom: 75px;
 
 	.well {
 		background-color: $bgColor;
-		color: #fff;
 
 		#best-value {		
 			background-color: #F1A40B;
@@ -20,9 +16,13 @@ $premiumPlusColor: #c7332f;
 	}
 
 	&:hover {
-		* {
-			font-weight: bold;
-			text-decoration: none;
+		.well {
+			color: $lighter;
+			border-color: $neutral-red;
+		}
+
+		.btn {
+			background-color: $neutral-red;
 		}
   	}
 }
@@ -43,6 +43,7 @@ $premiumPlusColor: #c7332f;
 	@include subscription-box($premiumPlusColor);
 }
 
+/*
 #subscription-lead {
 	background-color: #000;
 	//background-image: url("/images/master-class.jpg");
@@ -51,7 +52,9 @@ $premiumPlusColor: #c7332f;
     color: #fff;
 	padding: 80px;
 }
+*/
 
+/*
 #subscription-footer {
 	background-color: #000;
 	color: #fff;
@@ -59,3 +62,4 @@ $premiumPlusColor: #c7332f;
 	padding-bottom: 15px;
 	
 }
+*/
