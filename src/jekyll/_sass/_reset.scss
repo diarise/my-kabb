@@ -1,38 +1,53 @@
+@mixin theme-light {
+    background-color: $lightish;
+    color: $dark;  
+
+    a {
+        color: $neutral-red;
+
+        &:hover {
+            color: $neutral-red;    
+        }
+    }  
+}
+
+@mixin theme-dark {
+    background-color: $darker;
+    color: $light;   
+
+    a {
+        color: $lightest;
+
+        &:hover {
+            color: $lightest;    
+        }
+    }     
+}
+
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-    background-color: $darkest;
-    color: $light;
+    //@include theme-light;
+    @include theme-dark;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 100;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    //color: $lighter;
 }
 
 p {
     font-weight: 300;
-    //color: $light;
-}
-
-a {
-    color: $lightest;
-
-    &:hover {
-        color: $neutral-red;
-        text-decoration: none;     
-    }
 }
 
 .container {
     width: auto;
     max-width: 1050px;
-    padding: 0 40px;
+    padding: 0px 40px;
 }
 
 .navbar {
@@ -41,13 +56,11 @@ a {
     border-bottom: 1px solid $light;
 }
 
-/*
 .navbar-header{
    left: 50%;
    position: relative;
    transform: translateX(-50%);
 }
-*/
 
 .navbar-brand {
     padding: 0px;
@@ -60,23 +73,22 @@ a {
 }
 
 .footer {
-    background-color: $darker;
+    background-color: $dark;
     border-top: 1px solid $light;
-    margin-top: 20px;
+    margin-top: 0px;
     padding: 40px;
 
     p {
         font-weight: normal;
-        color: $lighter;
+        color: $light;
     }
 }
 
 .jumbotron {
-	margin-top: -20px;
-    margin-bottom: 10px;
-    padding-top: 1px;
-    padding-bottom: 10px;
+    @include theme-dark;
     color: $lightest;
-    background-color: $darker;
-    background-image: linear-gradient( to bottom, $darker 0%, $darkest 100%);
+    background: none;
+    background-image: none;
+    margin: 10px;
+    padding: 10px;
 }

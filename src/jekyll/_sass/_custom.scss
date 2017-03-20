@@ -1,0 +1,16 @@
+.leading-image {
+    margin-top: -20px;
+    padding-top: 1px;
+    //margin-bottom: -20px;
+    //padding-bottom: 0px;
+}
+
+.gradient-dark {
+    background-image: -webkit-linear-gradient($darker 0%, $darkest 100%);
+    background-image: -moz-linear-gradient($darker 0%, $darkest 100%);
+    background-image: -o-linear-gradient($darker 0%, $darkest 100%);
+    background-image: linear-gradient($darker 0%, $darkest 100%);
+}
+
+
+
