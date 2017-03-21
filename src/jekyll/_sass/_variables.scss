@@ -28,8 +28,12 @@ $gray-lightest:             #f7f7f9 !default;
 $darkest: $black;
 $darker: #433a3a;
 $dark: #564e4e;
+
 $neutral-red: $red; //#9c1f19;
-$lightish: #ededed;
+
+$lightish: #f7f4ef;
 $light: rgba($white, 0.5);
 $lighter: rgba($white, 0.75);
 $lightest: $white;
+
+//$lightish: #ededed;

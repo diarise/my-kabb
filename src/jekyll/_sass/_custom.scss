@@ -1,8 +1,5 @@
-.leading-image {
-    margin-top: -20px;
-    padding-top: 1px;
-    //margin-bottom: -20px;
-    //padding-bottom: 0px;
+.article {
+    @include theme-light;
 }
 
 .gradient-dark {

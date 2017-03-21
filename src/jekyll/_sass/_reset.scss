@@ -1,5 +1,5 @@
 @mixin theme-light {
-    background-color: $lightish;
+    background-color: $lightest;
     color: $dark;  
 
     a {
@@ -9,6 +9,11 @@
             color: $neutral-red;    
         }
     }  
+
+    .well {
+        background: none;
+        background-color: $lightish;
+    }
 }
 
 @mixin theme-dark {
@@ -54,6 +59,7 @@ p {
     background-color: $darker;
     border-color: $darker;
     border-bottom: 1px solid $light;
+    margin-bottom: 1px;
 }
 
 .navbar-header{
@@ -74,13 +80,12 @@ p {
 
 .footer {
     background-color: $dark;
-    border-top: 1px solid $light;
+    border-top: 2px solid $light;
     margin-top: 0px;
     padding: 40px;
 
     p {
         font-weight: normal;
-        color: $light;
     }
 }
 
