@@ -2,11 +2,22 @@
     @include theme-light;
 }
 
-.gradient-dark {
-    background-image: -webkit-linear-gradient($darker 0%, $darkest 100%);
-    background-image: -moz-linear-gradient($darker 0%, $darkest 100%);
-    background-image: -o-linear-gradient($darker 0%, $darkest 100%);
-    background-image: linear-gradient($darker 0%, $darkest 100%);
+.gradient-darkest-dark {
+    background-image: -webkit-linear-gradient($darkest 0%, $darker 100%);
+    background-image: -moz-linear-gradient($darkest 0%, $darker 100%);
+    background-image: -o-linear-gradient($darkest 0%, $darker 100%);
+    background-image: linear-gradient($darkest 0%, $darker 100%);
+}
+
+.bg-darkest {
+    background-color: $darkest;
+}
+
+#pesach-lead {
+    background-image: url("/images/pesach-jumbotron-faded.jpeg");
+	background-repeat: no-repeat;
+	background-position: center center;
+    height: 485px;    
 }
 
 
