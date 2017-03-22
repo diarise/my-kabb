@@ -13,11 +13,18 @@
     background-color: $darkest;
 }
 
+.side-borders {
+    border-left: 1px solid $light;
+    border-right: 1px solid $light;
+}
+
 #pesach-lead {
+    width: 100%;
+    height: 500px; 
     background-image: url("/images/pesach-jumbotron-faded.jpeg");
 	background-repeat: no-repeat;
 	background-position: center center;
-    height: 485px;    
+    background-size: cover;   
 }
 
 
